@@ -1,0 +1,108 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial !important;
+  font-size: 10px !important;
+  background: linear-gradient(to bottom, #d7e9f6, #dce1e4);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  width: 393px;
+  height: 222px;
+  margin: 15% auto;
+  background: #e0e0e0;
+  font-size: 11px;
+  text-align: center;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.panelTitleBar {
+  background-color: #e0e0e0;
+  padding: 10px;
+}
+
+.titleLabel {
+  white-space: nowrap;
+  color: #333;
+  font-weight: bold;
+  font-size: 12px !important;
+}
+
+.whiteContainer {
+  height: 116px;
+  background: white;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.formItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+label {
+  flex: 1;
+  margin-right: 10px;
+  text-align: ce;
+}
+
+.textInput,
+.comboBoxTextInput {
+  width: 280px;
+  height: 22px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  box-sizing: border-box;
+}
+
+.selectInput {
+  width: 280px;
+  height: 22px;
+  padding: 1px;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  box-sizing: border-box;
+}
+
+.button {
+  width: 70px;
+  height: 23px;
+  padding: 10px;
+  background-color: #eef9e9;
+  color: rgb(0, 0, 0);
+  border: 1px solid #7fb0d1;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.linkButton {
+  font-size: 9px;
+  padding: 0;
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: blue;
+  margin-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 1px;
+}
+
+.centeredButtons {
+  text-align: center;
+}
