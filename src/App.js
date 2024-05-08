@@ -1,29 +1,36 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, useStyles } from "react";
 import axios from "axios";
 import "./styles.css";
 
 function Login() {
-  const [username, setUsername] = useState("");
+  const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [msisdn, setMsisdn] = useState("");
-  const [showOptions, setShowOptions] = useState(false);
-  const options = ["ICAP"];
-  const [errorMessage, setErrorMessage] = useState(null);
+  const [employees, setEmployees] = useState([]);
+  //const classes = useStyles();
+  // const [showOptions, setShowOptions] = useState(false);
+  // const options = ["ICAP"];
+  // const [errorMessage, setErrorMessage] = useState(null);
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const response = await axios.post("/api/login", {
-        // Add your form field values here (username, password, msisdn, etc.)
-        username,
-        password,
-        msisdn,
-      });
-      console.log("Login successful", response);
-    } catch (error) {
-      console.error("Login error", error);
-      // Handle login error
-    }
+    const employee = { name, password, msisdn };
+    console.log(employee);
+    fetch("http://localhost:8080/employee/add", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(employee),
+    }).then(() => {
+      console.log("New employee added");
+    });
   };
+
+  useEffect(() => {
+    fetch("http://localhost:8080/employee/getAll")
+      .then((res) => res.json())
+      .then((result) => {
+        setEmployees(result);
+      });
+  }, []);
 
   const toggleOptions = () => {
     setShowOptions(!showOptions);
@@ -40,7 +47,7 @@ function Login() {
         <form onSubmit={handleSubmit}>
           <div className="formItem">
             <label htmlFor="username">Username *</label>
-            <input type="text" id="username" className="textInput" required />
+            <input type="text" id="username" className="textInput" required value={name} onChange={(e)=>setName(e.target.value)}/>
           </div>
           <div className="formItem">
             <label htmlFor="password">Password *</label>
@@ -49,11 +56,13 @@ function Login() {
               id="password"
               className="textInput"
               required
+              value={password}
+              onChange={(e)=>setPassword(e.target.value)}
             />
           </div>
           <div className="formItem">
             <label htmlFor="msisdn">MSISDN *</label>
-            <input type="text" id="msisdn" className="textInput" required />
+            <input type="text" id="msisdn" className="textInput" required value={msisdn} onChange={(e)=>setMsisdn(e.target.value)} />
           </div>
           <div className="formItem">
             <label htmlFor="domain">Domain</label>
@@ -63,7 +72,7 @@ function Login() {
           </div>
         </form>
       </div>
-      <button type="submit" form="loginForm" className="button">
+      <button type="submit" form="loginForm" className="button" onClick={handleSubmit}>
         Log in
       </button>
       <div className="centeredButtons">
